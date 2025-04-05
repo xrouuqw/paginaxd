@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casas Rurales</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .gallery {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .casa {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 380px;
+        }
+        .casa img {
+            width: 350px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .chat-box {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+        }
+        .chat-header {
+            background: #ff6600;
+            color: white;
+            padding: 10px;
+            border-radius: 10px 10px 0 0;
+            text-align: center;
+        }
+        .chat-messages {
+            height: 200px;
+            overflow-y: auto;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .chat-input, .chat-send {
+            width: calc(100% - 20px);
+            margin: 5px;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .chat-send {
+            background: #ff6600;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="banner">
+            <h1>Encuentra tu casa perfecta</h1>
+            <div class="search-bar">
+                <input type="text" placeholder="Ubicación">
+                <input type="date">
+                <input type="number" placeholder="Huéspedes">
+                <button>Buscar</button>
+            </div>
+        </div>
+    </header>
+    <main>
+        <h2>Casas rurales destacadas</h2>
+        <div class="gallery">
+            <div class="casa">
+                <img src="https://3826222.fs1.hubspotusercontent-na1.net/hub/3826222/hubfs/casa-lujo.jpg" alt="Casa 1">
+                <p>Precio: $120/noche</p>
+            </div>
+            <div class="casa">
+                <img src="https://content.elmueble.com/medio/2022/08/03/ly-villa-costa-blanca-3_1d6d2821_2000x1334.jpg" alt="Casa 2">
+                <p>Precio: $150/noche</p>
+            </div>
+            <div class="casa">
+                <img src="https://www.shutterstock.com/image-photo/modern-luxury-home-exterior-beautifully-600nw-2533391799.jpg" alt="Casa 3">
+                <p>Precio: $180/noche</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Chat de mensajería -->
+    <div class="chat-box">
+        <div class="chat-header">Chat de Soporte</div>
+        <div class="chat-messages"></div>
+        <input type="text" class="chat-input" placeholder="Escribe tu mensaje...">
+        <button class="chat-send">Enviar</button>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Casas Rurales. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        document.querySelector('.chat-send').addEventListener('click', function() {
+            const input = document.querySelector('.chat-input');
+            const message = input.value.trim();
+            if (message) {
+                const chatMessages = document.querySelector('.chat-messages');
+                
+                // Agregar el mensaje del usuario
+                const userMessage = document.createElement('div');
+                userMessage.style.textAlign = 'right';
+                userMessage.innerHTML = `<p><strong>Tú:</strong> ${message}</p>`;
+                chatMessages.appendChild(userMessage);
+                
+                // Respuesta automática
+                setTimeout(() => {
+                    const botMessage = document.createElement('div');
+                    botMessage.style.textAlign = 'left';
+                    botMessage.innerHTML = `<p><strong>Soporte:</strong> Gracias por tu mensaje. ¿En qué podemos ayudarte?</p>`;
+                    chatMessages.appendChild(botMessage);
+                }, 1000);
+                
+                input.value = '';
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+        });
+    </script>
+</body>
+</html>
